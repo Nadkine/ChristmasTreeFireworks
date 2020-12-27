@@ -5,11 +5,12 @@ import re
 import math
 import random
 
-AMOUNT_OF_FIREWORKS = 0.05   # Percentage change of new firework each frame
-GRAVITY = [0, 0.2]          # Speed in which the firework will fall
-WIDTH_TREE = 200            # Width of tree 
-HEIGHT_TREE = 300           # Height of tree 
-AMOUNT_OF_DETAIL = 20       # Distance between firework and led, for which the Led will still light up
+PARTICLES_PER_FIREWORK = 100; # The amount of particles the firework explodes in
+AMOUNT_OF_FIREWORKS = 0.05    # Percentage change of new firework each frame
+GRAVITY = [0, 0.2]            # Speed in which the firework will fall
+WIDTH_TREE = 200              # Width of tree 
+HEIGHT_TREE = 300             # Height of tree 
+AMOUNT_OF_DETAIL = 20         # Distance between firework and led, for which the Led will still light up
 
 def xmaslight():
     #Read in data
@@ -85,7 +86,7 @@ class Firework:
             self.firework.update()
 
             if self.firework.explode():
-                for i in range(750):
+                for i in range(PARTICLES_PER_FIREWORK):
                     self.particles.append(Particle(self.firework.location, self.hu));   
                 self.firework = None
 
